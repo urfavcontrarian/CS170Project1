@@ -51,7 +51,7 @@ public:
                     for(int k = 0; k < 3; k++){
                         for(int l = 0; l < 3; l++){
                             if(goal[k][l] == val){
-                                distance += abs(i-k) + abs(j-l);
+                                distance += sqrt(pow(i - k, 2) + pow(j - l, 2));
                                 break;
                             }
                         }
@@ -148,25 +148,13 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
             cout << "The depth of the goal node was " << current->depth << "." << endl;
             return;
         }
+
         nodesExpanded++;
         string state_str;
         for (int i = 0; i < current->state.size(); i++) {
             for (int j = 0; j < current->state[i].size(); j++) {
                 state_str += to_string(current->state[i][j]) + ",";
             }
-
-        // if(ghost.first == 0){
-            // if(ghost.second == 0){
-            //     vector<vector<int>> rightState = SwapRight(currentState, ghost);
-            //     vector<vector<int>> downState = SwapDown(currentState, ghost);
-            // }
-            // else if(ghost.second == 2) {
-
-            // }
-            // vector<vector<int>> leftState = SwapLeft(currentState, ghost);
-            // vector<vector<int>> rightState = SwapRight(currentState, ghost);
-            // vector<vector<int>> downState = SwapDown(currentState, ghost);
-        // }
         }
         explored.insert(state_str);
 
@@ -186,11 +174,6 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
                 explored.insert(neighbor_str);
             }
         }
-};
-
-vector<vector<int>> createPuzzle(){
-    
-}
     }
     cout << "Goal not found." << endl;
 }
