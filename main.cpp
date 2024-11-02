@@ -187,7 +187,7 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
             }
         }
 }
-}
+};
 
 void menu() {
     const vector<vector<int> > Goal = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
@@ -225,7 +225,7 @@ void menu() {
     } else if (choice == "3") {
         search(problem, Problem::h_euclid_dist);
     }
-}
+};
 
 int main() {
     menu();
