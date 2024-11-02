@@ -188,13 +188,6 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
         }
 };
 
-vector<vector<int>> createPuzzle(){
-    
-}
-    }
-    cout << "Goal not found." << endl;
-}
-
 void menu() {
     const vector<vector<int> > Goal = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
     cout << "Welcome to [YOUR_STUDENT_ID] 8 puzzle solver." << endl;
@@ -217,7 +210,7 @@ void menu() {
     }
 
     Problem problem(puzzle, Goal);
-
+    cin.clear()
     cout << "Enter your choice of algorithm:" << endl;
     cout << "1. Uniform Cost Search" << endl;
     cout << "2. A* with the Misplaced Tile heuristic." << endl;
