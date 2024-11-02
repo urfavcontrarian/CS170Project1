@@ -161,7 +161,7 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
             vector<vector<vector<int>>> path;
 
             while (current->parent) {
-                path.push_back(current.state);
+                path.push_back(current->state);
                 *current = *current->parent;
             }
             path.push_back(problem.initialState);
