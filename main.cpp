@@ -106,7 +106,11 @@ public:
         }
         return neighbors;
     }
+<<<<<<< HEAD
+}
+=======
 };
+>>>>>>> 1e459bef0ce54b8185c260a43c6aa5c507b5e1e3
 
 void printPuzzle(const vector<vector<int>>& puzzle) {
     for (int i = 0; i < puzzle.size(); i++) {
@@ -147,16 +151,26 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
         maxQueueSize = max(maxQueueSize, (int)frontier.size());
         Node* current = frontier.top();
         frontier.pop();
-
+        
+        cout << "Expanding state" << endl;
+        printPuzzle(current->state);
+        cout << "The best state to expand with g(n) = " << current->Gcost << " and h(n) = " << current->Hcost << " is…" << endl;
+        printPuzzle(current->state);
         if (problem.isGoal(current->state)) {
             cout << "Goal!!!" << endl;
             cout << "To solve this problem the search algorithm expanded a total of " << nodesExpanded << " nodes." << endl;
             cout << "The maximum number of nodes in the queue at any one time: " << maxQueueSize << "." << endl;
             cout << "The depth of the goal node was " << current->depth << "." << endl;
             vector<vector<vector<int>>> path;
+<<<<<<< HEAD
+            while (current->parent) {
+                path.push_back(current.state);
+                *current = *current->parent;
+=======
             while (current->parent) {
                 path.push_back(current->state);
                 *current = *current->parent;
+>>>>>>> 1e459bef0ce54b8185c260a43c6aa5c507b5e1e3
             }
             path.push_back(problem.initialState);
             reverse(path.begin(), path.end());
