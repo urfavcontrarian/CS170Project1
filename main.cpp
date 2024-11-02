@@ -106,11 +106,8 @@ public:
         }
         return neighbors;
     }
-<<<<<<< HEAD
-}
-=======
 };
->>>>>>> 1e459bef0ce54b8185c260a43c6aa5c507b5e1e3
+
 
 void printPuzzle(const vector<vector<int>>& puzzle) {
     for (int i = 0; i < puzzle.size(); i++) {
@@ -162,15 +159,10 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
             cout << "The maximum number of nodes in the queue at any one time: " << maxQueueSize << "." << endl;
             cout << "The depth of the goal node was " << current->depth << "." << endl;
             vector<vector<vector<int>>> path;
-<<<<<<< HEAD
+
             while (current->parent) {
                 path.push_back(current.state);
                 *current = *current->parent;
-=======
-            while (current->parent) {
-                path.push_back(current->state);
-                *current = *current->parent;
->>>>>>> 1e459bef0ce54b8185c260a43c6aa5c507b5e1e3
             }
             path.push_back(problem.initialState);
             reverse(path.begin(), path.end());
