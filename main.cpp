@@ -4,6 +4,7 @@
 #include <cmath>
 #include <unordered_set>
 #include <functional>
+#include <algorithm>
 
 using namespace std;
 
@@ -105,7 +106,7 @@ public:
         }
         return neighbors;
     }
-}
+};
 
 void printPuzzle(const vector<vector<int>>& puzzle) {
     for (int i = 0; i < puzzle.size(); i++) {
@@ -153,13 +154,13 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
             cout << "The maximum number of nodes in the queue at any one time: " << maxQueueSize << "." << endl;
             cout << "The depth of the goal node was " << current->depth << "." << endl;
             vector<vector<vector<int>>> path;
-            while (current.parent) {
-                path.push_back(current.state);
-                current = *current.parent;
+            while (current->parent) {
+                path.push_back(current->state);
+                *current = *current->parent;
             }
             path.push_back(problem.initialState);
             reverse(path.begin(), path.end());
-            printSolution(path)
+            printSolution(path);
             return;
         }
         nodesExpanded++;
@@ -225,7 +226,7 @@ void menu() {
     }
 
     Problem problem(puzzle, Goal);
-    cin.clear()
+    cin.clear();
     cout << "Enter your choice of algorithm:" << endl;
     cout << "1. Uniform Cost Search" << endl;
     cout << "2. A* with the Misplaced Tile heuristic." << endl;
