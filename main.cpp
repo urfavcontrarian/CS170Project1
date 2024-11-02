@@ -120,6 +120,17 @@ void printPuzzle(const vector<vector<int>>& puzzle) {
     }
     cout << endl;
 }
+void printSolution(const vector<vector<vector<int>>>& path) {
+    for (const auto& state : path) {
+        for (const auto& row : state) {
+            for (int num : row) {
+                cout << num << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
+}
 
 void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const vector<vector<int>>&)) {
     priority_queue<Node*, vector<Node*>, CompareNodes> frontier;
@@ -136,16 +147,19 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
         Node* current = frontier.top();
         frontier.pop();
 
-        cout << "Expanding state" << endl;
-        printPuzzle(current->state);
-        cout << "The best state to expand with g(n) = " << current->Gcost << " and h(n) = " << current->Hcost << " is…" << endl;
-        printPuzzle(current->state);
-
         if (problem.isGoal(current->state)) {
             cout << "Goal!!!" << endl;
             cout << "To solve this problem the search algorithm expanded a total of " << nodesExpanded << " nodes." << endl;
             cout << "The maximum number of nodes in the queue at any one time: " << maxQueueSize << "." << endl;
             cout << "The depth of the goal node was " << current->depth << "." << endl;
+            vector<vector<vector<int>>> path;
+            while (current.parent) {
+                path.push_back(current.state);
+                current = *current.parent;
+            }
+            path.push_back(problem.initialState);
+            reverse(path.begin(), path.end());
+            printSolution(path)
             return;
         }
         nodesExpanded++;
@@ -191,7 +205,7 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
 
 void menu() {
     const vector<vector<int> > Goal = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
-    cout << "Welcome to [YOUR_STUDENT_ID] 8 puzzle solver." << endl;
+    cout << "Welcome to our (862260629, 862275202, 862224861) 8 puzzle solver." << endl;
     cout << "Type “1” to use a default puzzle, or “2” to enter your own puzzle." << endl;
 
     string choice;
