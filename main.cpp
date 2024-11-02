@@ -9,8 +9,6 @@ using namespace std;
 
 struct Node {
     vector<vector<int>> state;  // 3x3 puzzle board
-    // example input --> vector<vector<int>> puzzle
-    //                    = {{1, 0, 3}, {4, 2, 6}, {7, 5, 8}};
     int Gcost;  // Path cost from the start node
     int Hcost;  // Heuristic cost to the goal
     int depth;  // Depth of the node in the tree
@@ -148,25 +146,13 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
             cout << "The depth of the goal node was " << current->depth << "." << endl;
             return;
         }
+
         nodesExpanded++;
         string state_str;
         for (int i = 0; i < current->state.size(); i++) {
             for (int j = 0; j < current->state[i].size(); j++) {
                 state_str += to_string(current->state[i][j]) + ",";
             }
-
-        // if(ghost.first == 0){
-            // if(ghost.second == 0){
-            //     vector<vector<int>> rightState = SwapRight(currentState, ghost);
-            //     vector<vector<int>> downState = SwapDown(currentState, ghost);
-            // }
-            // else if(ghost.second == 2) {
-
-            // }
-            // vector<vector<int>> leftState = SwapLeft(currentState, ghost);
-            // vector<vector<int>> rightState = SwapRight(currentState, ghost);
-            // vector<vector<int>> downState = SwapDown(currentState, ghost);
-        // }
         }
         explored.insert(state_str);
 
@@ -186,11 +172,6 @@ void search(Problem& problem, int (*heuristic)(const vector<vector<int>>&, const
                 explored.insert(neighbor_str);
             }
         }
-};
-
-vector<vector<int>> createPuzzle(){
-    
-}
     }
     cout << "Goal not found." << endl;
 }
